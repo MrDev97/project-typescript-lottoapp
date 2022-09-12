@@ -8,7 +8,7 @@ const startApp = async (): Promise<void> => {
         const result = await inquirer.prompt([{
             name: 'number',
             type: 'input',
-            message: 'Podaj liczbę...'
+            message: 'Insert number...'
         }]);
     
         if (validateInput(result.number)) {
