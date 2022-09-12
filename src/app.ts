@@ -15,6 +15,15 @@ const startApp = async (): Promise<void> => {
             chosenNumbers.push(parseInt(result.number));
         }
     } while (chosenNumbers.length < 6);
+
+    do {
+        const number: number = randomNewNumber();
+        if (validateRandomNumber(number)) {
+            randomNumbers.push(number);
+        }
+    } while (randomNumbers.length < 6);
+
+    printResult();
 };
 
 const validateInput = (input: string): boolean => {
@@ -33,3 +42,33 @@ const validateInput = (input: string): boolean => {
     }
     return true;
 };
+
+const validateRandomNumber = (number: number): boolean => {    
+    if (randomNumbers.includes(number)) {
+    return false;
+}
+return true;
+
+};
+
+const randomNewNumber = (): number => {
+    return Math.floor(Math.random() * 49) + 1;
+};
+
+const countResult = (): number => {
+    let count = 0;
+    for (let i = 0; i < randomNumbers.length; i++) {
+        if (chosenNumbers.includes(randomNumbers[i])) {
+            count++;
+        }
+    }
+    return count;
+};
+
+const printResult = (): void => {
+    console.log(`Your numbers: ${chosenNumbers}
+Computer numbers: ${randomNumbers}
+You hit ${countResult()} out of ${randomNumbers.length} numbers!`);
+};
+
+startApp();
