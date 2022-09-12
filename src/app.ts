@@ -4,11 +4,17 @@ const chosenNumbers: number[] = [];
 const randomNumbers: number[] = [];
 
 const startApp = async (): Promise<void> => {
-    const result = await inquirer.prompt([{
-        name: 'number',
-        type: 'input',
-        message: 'Podaj liczbę...'
-    }]);
+    do {
+        const result = await inquirer.prompt([{
+            name: 'number',
+            type: 'input',
+            message: 'Podaj liczbę...'
+        }]);
+    
+        if (validateInput(result.number)) {
+            chosenNumbers.push(parseInt(result.number));
+        }
+    } while (chosenNumbers.length < 6);
 };
 
 const validateInput = (input: string): boolean => {
