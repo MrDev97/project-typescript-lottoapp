@@ -1,11 +1,12 @@
 import inquirer from 'inquirer';
+import { PromptResult } from './interfaces';
 
 const chosenNumbers: number[] = [];
 const randomNumbers: number[] = [];
 
 const startApp = async (): Promise<void> => {
     do {
-        const result = await inquirer.prompt([{
+        const result: PromptResult = await inquirer.prompt([{
             name: 'number',
             type: 'input',
             message: 'Insert number...'
